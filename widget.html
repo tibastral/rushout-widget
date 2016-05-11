@@ -79,9 +79,10 @@
       </p>
     </script>
     <script>
-      var R_BASE_URL = "http://rushout.dev/"
+      var R_BASE_URL = "https://rushout.co/"
       var R_TEMPLATE = Handlebars.compile($("#rushout-template").html());
-      var R_URL = R_BASE_URL + "do-you-like-that-song/events"
+      var R_SLUG = 'do-you-like-that-song'
+      var R_URL = R_BASE_URL + R_SLUG + "/events"
       var R_URL_JSON = R_URL + ".json"
 
       $(document).ready(function(){
