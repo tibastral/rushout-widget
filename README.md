@@ -1,0 +1,1 @@
+Exemple file inside widget.html
