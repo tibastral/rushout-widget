@@ -12,7 +12,13 @@
       body, body * {
         box-sizing: border-box;
       }
+      .text--center {
+        text-align: center;
+      }
     </style>
+
+    <!-- Basic Styling of the Rushout Feed -->
+
     <style type="text/css" media="screen">
       .r-feed {
         max-width: 100%;
@@ -25,7 +31,6 @@
         margin: 10px;
       }
         .r-text {
-          flex-shrink: 10;
           align-self: center;
         }
         .r-title {
@@ -56,10 +61,8 @@
       .r-events a:first-child .r-title {
         font-size: 30px;
       }
-      .text--center {
-        text-align: center;
-      }
     </style>
+    <!-- Basic template, change it if you need to -->
     <script id="rushout-template" type="text/x-handlebars-template">
       <div class="r-events">
         {{#each events}}
@@ -78,10 +81,11 @@
         <img width="110" height="28" class="logo" src="http://res.cloudinary.com/dt2v52gw7/image/upload/e_trim/e_make_transparent/co_rgb:34d0cc,e_colorize/c_scale,w_110/v1449748264/logo-04_hapxqb.png" alt="rushout">
       </p>
     </script>
+    <!-- Javascript script to fetch Rushout Content-->
     <script>
       var R_BASE_URL = "https://rushout.co/";
       var R_TEMPLATE = Handlebars.compile($("#rushout-template").html());
-      var R_SLUG = 'do-you-like-that-song';
+      var R_SLUG = 'do-you-like-that-song'; // Put here your own slug
       var R_URL = R_BASE_URL + R_SLUG + "/events";
       var R_URL_JSON = R_URL + ".json";
 
