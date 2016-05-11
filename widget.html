@@ -3,36 +3,80 @@
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:700,400,300,100' rel='stylesheet' type='text/css'/>
+
     <style type="text/css" media="screen">
       body{
         margin: 0px;
       }
+      body, body * {
+        box-sizing: border-box;
+      }
     </style>
     <style type="text/css" media="screen">
-      .r-inline-block {
-        display: inline-block;
+      .r-feed {
+        max-width: 100%;
       }
       .r-event {
         color: black;
+        font-family: Roboto;
       }
-      .r-event img {
+      .r-event div {
+        margin: 10px;
+      }
+        .r-text {
+          flex-shrink: 10;
+          align-self: center;
+        }
+        .r-title {
+          font-size: 17px;
+        }
+        .r-image {
+          min-width: 150px;
+          max-width: 150px;
+        }
+        .r-image img {
+          width: 100%;
+        }
+        .r-events a {
+          display: flex;
+          text-decoration: none;
+        }
+      .r-events a:first-child {
+        flex-direction: column;
+        text-decoration: none;
+      }
+      .r-events a:first-child .r-image {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 10px;
+        margin: 0;
         width: 100%;
+      }
+      .r-events a:first-child .r-title {
+        font-size: 30px;
       }
       .text--center {
         text-align: center;
       }
     </style>
     <script id="rushout-template" type="text/x-handlebars-template">
-      {{#each events}}
-        <a href={{../R_URL}}/{{slug}} class="r-event">
-          <img src={{image.url}}>
-          <div class="r-details">
-            <h1 class="r-inline-block">{{title}}</h1>
-            <p>{{keywords}}</p>
-          </div>
-        </a>
-      {{/each}}
-      <p class='text--center'>RushOut</p>
+      <div class="r-events">
+        {{#each events}}
+          <a href={{../R_URL}}/{{slug}} class="r-event">
+            <div class="r-image">
+              <img src={{image.thumbnail_512w.url}}>
+            </div>
+            <div class="r-text">
+              <h1 class="r-title">{{title}}</h1>
+              <p>{{keywords}}</p>
+            </div>
+          </a>
+        {{/each}}
+      </div>
+      <p class='text--center'>
+        <img width="110" height="28" class="logo" src="http://res.cloudinary.com/dt2v52gw7/image/upload/e_trim/e_make_transparent/co_rgb:34d0cc,e_colorize/c_scale,w_110/v1449748264/logo-04_hapxqb.png" alt="rushout">
+      </p>
     </script>
     <script>
       var R_BASE_URL = "http://rushout.dev/"
