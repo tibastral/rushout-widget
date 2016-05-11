@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <style type="text/css" media="screen">
+      body{
+        margin: 0px;
+      }
+    </style>
+    <style type="text/css" media="screen">
+      .r-inline-block {
+        display: inline-block;
+      }
+      .r-event {
+        color: black;
+      }
+      .r-event img {
+        width: 100%;
+      }
+      .text--center {
+        text-align: center;
+      }
+    </style>
+    <script id="rushout-template" type="text/x-handlebars-template">
+      {{#each events}}
+        <a href={{../R_URL}}/{{slug}} class="r-event">
+          <img src={{image.url}}>
+          <div class="r-details">
+            <h1 class="r-inline-block">{{title}}</h1>
+            <p>{{keywords}}</p>
+          </div>
+        </a>
+      {{/each}}
+      <p class='text--center'>RushOut</p>
+    </script>
+    <script>
+      var R_BASE_URL = "http://rushout.dev/"
+      var R_TEMPLATE = Handlebars.compile($("#rushout-template").html());
+      var R_URL = R_BASE_URL + "do-you-like-that-song/events"
+      var R_URL_JSON = R_URL + ".json"
+
+      $(document).ready(function(){
+        $.getJSON(R_URL_JSON, function(result){
+          $(".rushout-feed").html(R_TEMPLATE({
+            events: result,
+            R_URL: R_URL
+          }));
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="rushout-feed">
+    </div>
+  </body>
+</html>
