@@ -83,9 +83,24 @@
     </script>
     <!-- Javascript script to fetch Rushout Content-->
     <script>
+      var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1));
+        var sURLVariables = sPageURL.split('&');
+        var sParameterName;
+        var i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+          sParameterName = sURLVariables[i].split('=');
+
+          if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+          }
+        }
+      };
       var R_BASE_URL = "https://rushout.co/";
       var R_TEMPLATE = Handlebars.compile($("#rushout-template").html());
-      var R_SLUG = 'do-you-like-that-song'; // Put here your own slug
+      var R_SLUG = getUrlParameter('slug'); // to be able to test this html file with various slugs directly
+      // var R_SLUG = 'do-you-like-that-song'; // Put here your own slug
       var R_URL = R_BASE_URL + R_SLUG + "/events";
       var R_URL_JSON = R_URL + ".json";
 
